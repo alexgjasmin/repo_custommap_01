@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409054382c13ee7d4e9126c1b58d3c2b, type: 3}
+  m_Name: repo_mc_unnamed01
+  m_EditorClassIdentifier: 
+  ResourcePath: 
+  NarrativeName: 
+  ModuleAmount: 6
+  PassageMaxAmount: 2
+  HasEnemies: 1
+  ConnectObject: {fileID: 0}
+  BlockObject: {fileID: 0}
+  StartRooms: []
+  LoadingGraphic01: {fileID: 0}
+  LoadingGraphic02: {fileID: 0}
+  LoadingGraphic03: {fileID: 0}
+  ModulesNormal1: []
+  ModulesPassage1: []
+  ModulesDeadEnd1: []
+  ModulesExtraction1: []
+  ModulesNormal2: []
+  ModulesPassage2: []
+  ModulesDeadEnd2: []
+  ModulesExtraction2: []
+  ModulesNormal3: []
+  ModulesPassage3: []
+  ModulesDeadEnd3: []
+  ModulesExtraction3: []
+  ValuablePresets: []
+  MusicPreset: {fileID: 0}
+  ConstantMusicPreset: {fileID: 0}
+  AmbiencePresets: []
+  FogColor: {r: 0, g: 0, b: 0, a: 1}
+  FogStartDistance: 0
+  FogEndDistance: 15
+  AmbientColor: {r: 0, g: 0, b: 0.2, a: 1}
+  AmbientColorAdaptation: {r: 0.06, g: 0.06, b: 0.39, a: 1}
+  ColorTemperature: 0
+  ColorFilter: {r: 1, g: 1, b: 1, a: 1}
+  BloomIntensity: 10
+  BloomThreshold: 0.9
+  VignetteColor: {r: 0.02, g: 0, b: 0.22, a: 0}
+  VignetteIntensity: 0.4
+  VignetteSmoothness: 0.7
