@@ -79,3 +79,6 @@ crashlytics-build.properties
 *.dll*
 /AssetRipper/*
 /AssetRipperOutput/*
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+Packages/manifest.json
+Packages/packages-lock.json
