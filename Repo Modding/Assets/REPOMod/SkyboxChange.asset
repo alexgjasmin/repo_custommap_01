@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1549797422, guid: bce5aaaa8537e4b46999529ccb24c160, type: 3}
+  m_Name: SkyboxChange
+  m_EditorClassIdentifier: 
+  _name: 
+  _author: 
+  _version: 1.0.0
+  _description: 
+  _websiteUrl: 
+  _dependencies:
+  - Zehs-REPOLib-2.0.1
+  _icon: {fileID: 0}
+  _readme: {fileID: 0}
