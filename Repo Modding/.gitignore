@@ -9,6 +9,15 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/Repo Modding/*
+!/Repo Modding/Assets
+/Repo Modding/Assets/Plugins/*.dll
+/Repo Modding/Assets/Plugins/ReferenceAssemblies/*.dll
+/Repo Modding/Assets/Plugins/ReferenceAssemblies/*.meta
+/Repo Modding/Assets/AssetBundles/*
+!/Repo Modding/Assets/AssetBundles/.gitkeep
+!/Repo Modding/Packages
+!/Repo Modding/ProjectSettings
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
