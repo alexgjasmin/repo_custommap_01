@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 4236837698
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: village
+      Dependencies: {}

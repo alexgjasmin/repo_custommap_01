@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 731181689
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1f2e7ee5f057a9781d4d23030010564f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5e762ccb57c4caaabbb5a4199ac82c23
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 1f2e7ee5f057a9781d4d23030010564f
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/REPO/Mods/plugins/Monkey-MonkeyMainModifier/Assets/Editor/SkyboxDefault.mat
+- Assets/SkyboxDefault.mat
+Dependencies: []

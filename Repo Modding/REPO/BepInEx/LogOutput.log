@@ -1,0 +1,26 @@
+[Info   :MonkeyMainModifier] Plugin Monkey.MonkeyMainModifier is loaded!
+[Info   :MonkeyMainModifier] Asset bundle path set to: C:\Users\Alex Jasmin\Documents\GitHub\repo_custommap_01\Repo Modding\Assets\REPO\Mods\plugins\Monkey-MonkeyMainModifier\Assets\custom_assets.bundle
+[Info   :MonkeyMainModifier] Attempting to load asset bundle from: C:\Users\Alex Jasmin\Documents\GitHub\repo_custommap_01\Repo Modding\Assets\REPO\Mods\plugins\Monkey-MonkeyMainModifier\Assets\custom_assets.bundle
+[Info   :MonkeyMainModifier] Scene detection initialized!
+[Info   :MonkeyMainModifier] Monkey.MonkeyMainModifier v1.0.0 has loaded!
+[Warning:  HarmonyX] AccessTools.TypeByName: Could not find type named Unity.Netcode.NetworkManager
+[Warning:  HarmonyX] AccessTools.Field: type is null
+[Info   :MonkeyMainModifier] Main Scene Detected.
+[Info   :MonkeyMainModifier] Found the main camera in the scene: Camera Main
+[Info   :MonkeyMainModifier] Camera Details for: Camera Main
+[Info   :MonkeyMainModifier]   - Depth: 0
+[Info   :MonkeyMainModifier]   - Field of View: 70
+[Info   :MonkeyMainModifier]   - Culling Mask: 110167775
+[Info   :MonkeyMainModifier]   - Clear Flags: SolidColor
+[Info   :MonkeyMainModifier]   - Near Clip Plane: 0.01
+[Info   :MonkeyMainModifier]   - Far Clip Plane: 15
+[Info   :MonkeyMainModifier]   - Position: (0.00, 1.00, 0.00)
+[Info   :MonkeyMainModifier]   - Rotation: (0.00, 0.00, 0.00)
+[Info   :MonkeyMainModifier]   - Parent: Tilt
+[Info   :MonkeyMainModifier]   - Is Orthographic: False
+[Warning:MonkeyMainModifier] Custom material not loaded yet. Cannot apply to scene.
+[Error  :MonkeyMainModifier] Failed to load asset bundle! The file may not exist or could be corrupted.
+[Info   :MonkeyMainModifier] Monkey modifying camera: Camera Main
+[Info   :MonkeyMainModifier] Monkey modified: Camera Main
+[Info   :MonkeyMainModifier]   - Clear Flags: SolidColor -> Skybox
+[Warning:  HarmonyX] UnpatchAll has been called - This will remove ALL HARMONY PATCHES.
