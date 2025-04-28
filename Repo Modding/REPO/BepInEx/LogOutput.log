@@ -1,8 +1,17 @@
 [Info   :MonkeyMainModifier] Plugin Monkey.MonkeyMainModifier is loaded!
-[Info   :MonkeyMainModifier] Asset bundle path set to: C:\Users\Alex Jasmin\Documents\GitHub\repo_custommap_01\Repo Modding\Assets\REPO\Mods\plugins\Monkey-MonkeyMainModifier\Assets\custom_assets.bundle
-[Info   :MonkeyMainModifier] Attempting to load asset bundle from: C:\Users\Alex Jasmin\Documents\GitHub\repo_custommap_01\Repo Modding\Assets\REPO\Mods\plugins\Monkey-MonkeyMainModifier\Assets\custom_assets.bundle
 [Info   :MonkeyMainModifier] Scene detection initialized!
 [Info   :MonkeyMainModifier] Monkey.MonkeyMainModifier v1.0.0 has loaded!
+[Info   :MonkeyMainModifier] Attempting to load asset bundle from: C:\Users\Alex Jasmin\Documents\GitHub\repo_custommap_01\Repo Modding\Assets\REPO\Mods\plugins\Monkey-MonkeyMainModifier\village
+[Info   :MonkeyMainModifier] Monkey has loaded the asset bundle.
+[Info   :MonkeyMainModifier] Asset bundle contains 2 assets:
+[Info   :MonkeyMainModifier]   - Asset: assets/repo/mods/plugins/monkey-monkeymainmodifier/assets/editor/skyboxdefault.mat
+[Info   :MonkeyMainModifier]   - Asset: assets/skyboxdefault.mat
+[Info   :MonkeyMainModifier] Loaded 2 materials from the bundle:
+[Info   :MonkeyMainModifier]   - Material: SkyboxDefault, Shader: Skybox/Cubemap
+[Info   :MonkeyMainModifier]   - Material: SkyboxDefault, Shader: Skybox/Cubemap
+[Info   :MonkeyMainModifier] All assets loaded (2 total):
+[Info   :MonkeyMainModifier]   - Asset: SkyboxDefault, Type: Material
+[Info   :MonkeyMainModifier]   - Asset: SkyboxDefault, Type: Material
 [Warning:  HarmonyX] AccessTools.TypeByName: Could not find type named Unity.Netcode.NetworkManager
 [Warning:  HarmonyX] AccessTools.Field: type is null
 [Info   :MonkeyMainModifier] Main Scene Detected.
@@ -18,9 +27,8 @@
 [Info   :MonkeyMainModifier]   - Rotation: (0.00, 0.00, 0.00)
 [Info   :MonkeyMainModifier]   - Parent: Tilt
 [Info   :MonkeyMainModifier]   - Is Orthographic: False
-[Warning:MonkeyMainModifier] Custom material not loaded yet. Cannot apply to scene.
-[Error  :MonkeyMainModifier] Failed to load asset bundle! The file may not exist or could be corrupted.
-[Info   :MonkeyMainModifier] Monkey modifying camera: Camera Main
-[Info   :MonkeyMainModifier] Monkey modified: Camera Main
+[Info   :MonkeyMainModifier] Monkey is modifying the camera: Camera Main
+[Info   :MonkeyMainModifier] Monkey modified the: Camera Main
 [Info   :MonkeyMainModifier]   - Clear Flags: SolidColor -> Skybox
+[Info   :MonkeyMainModifier] Applied custom material to skybox!
 [Warning:  HarmonyX] UnpatchAll has been called - This will remove ALL HARMONY PATCHES.

@@ -42,12 +42,12 @@ MonoBehaviour:
   AmbiencePresets: []
   FogColor: {r: 0, g: 0, b: 0, a: 0}
   FogStartDistance: 0
-  FogEndDistance: 15
-  AmbientColor: {r: 0, g: 0, b: 0.2, a: 1}
-  AmbientColorAdaptation: {r: 0.06, g: 0.06, b: 0.39, a: 1}
+  FogEndDistance: 70
+  AmbientColor: {r: 0.378471, g: 0.46718413, b: 0.5943396, a: 1}
+  AmbientColorAdaptation: {r: 0.378471, g: 0.46718413, b: 0.5943396, a: 1}
   ColorTemperature: 0
   ColorFilter: {r: 1, g: 1, b: 1, a: 1}
-  BloomIntensity: 10
+  BloomIntensity: 2
   BloomThreshold: 0.9
   VignetteColor: {r: 0.02, g: 0, b: 0.22, a: 0}
   VignetteIntensity: 0.4
