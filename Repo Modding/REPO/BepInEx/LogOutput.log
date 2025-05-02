@@ -14,4 +14,21 @@
 [Info   :MonkeyMainModifier]   - Asset: SkyboxDefault, Type: Material
 [Warning:  HarmonyX] AccessTools.TypeByName: Could not find type named Unity.Netcode.NetworkManager
 [Warning:  HarmonyX] AccessTools.Field: type is null
+[Info   :MonkeyMainModifier] Main Scene Detected.
+[Info   :MonkeyMainModifier] Found the main camera in the scene: Camera Main
+[Info   :MonkeyMainModifier] Camera Details for: Camera Main
+[Info   :MonkeyMainModifier]   - Depth: 0
+[Info   :MonkeyMainModifier]   - Field of View: 70
+[Info   :MonkeyMainModifier]   - Culling Mask: 110167775
+[Info   :MonkeyMainModifier]   - Clear Flags: SolidColor
+[Info   :MonkeyMainModifier]   - Near Clip Plane: 0.01
+[Info   :MonkeyMainModifier]   - Far Clip Plane: 15
+[Info   :MonkeyMainModifier]   - Position: (0.00, 1.00, 0.00)
+[Info   :MonkeyMainModifier]   - Rotation: (0.00, 0.00, 0.00)
+[Info   :MonkeyMainModifier]   - Parent: Tilt
+[Info   :MonkeyMainModifier]   - Is Orthographic: False
+[Info   :MonkeyMainModifier] Monkey is modifying the camera: Camera Main
+[Info   :MonkeyMainModifier] Monkey modified the: Camera Main
+[Info   :MonkeyMainModifier]   - Clear Flags: SolidColor -> Skybox
+[Info   :MonkeyMainModifier] Applied custom material to skybox!
 [Warning:  HarmonyX] UnpatchAll has been called - This will remove ALL HARMONY PATCHES.
