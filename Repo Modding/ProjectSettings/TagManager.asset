@@ -19,6 +19,8 @@ TagManager:
   - Grab Area
   - Item Volume
   - Ceiling
+  - teleChest
+  - teleportChest
   layers:
   - Default
   - TransparentFX
