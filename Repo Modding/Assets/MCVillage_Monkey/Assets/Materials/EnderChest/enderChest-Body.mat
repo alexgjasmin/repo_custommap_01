@@ -119,6 +119,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 4, g: 4, b: 4, a: 1}
-    - _Emissive_Color: {r: 0.4433962, g: 0, b: 0.34843552, a: 1}
+    - _Emissive_Color: {r: 1, g: 0, b: 0.78823566, a: 1}
     - _Tiling: {r: 5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []

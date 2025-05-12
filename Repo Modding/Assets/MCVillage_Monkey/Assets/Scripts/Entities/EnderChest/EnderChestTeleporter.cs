@@ -18,6 +18,22 @@ public class EnderChestTeleporter : MonoBehaviour
     [Tooltip("How long the chest must remain closed before it can open again")]
     [SerializeField] private float chestReopenCooldown = 1.5f;
 
+    [Header("Debug Settings")]
+    [Tooltip("Enable/disable all debug logging")]
+    [SerializeField] private bool enableDebugLogs = true;
+    [Tooltip("Enable/disable Unity GUI debug overlays")]
+    [SerializeField] private bool enableGUIDebugging = false;
+    [Tooltip("Enable/disable debug key commands (R to reset)")]
+    [SerializeField] private bool enableDebugKeyCommands = false;
+    [Tooltip("Debug log cooldown time remaining")]
+    [SerializeField] private bool logCooldownRemaining = false;
+    [Tooltip("Draw debug gizmos in scene view")]
+    [SerializeField] private bool drawDebugGizmos = true;
+    [Tooltip("Interval for cooldown debug logs (seconds)")]
+    [SerializeField] private float cooldownLogInterval = 0.5f;
+    [Tooltip("Key to reset teleporter for testing")]
+    [SerializeField] private KeyCode resetKey = KeyCode.R;
+
     private GameObject teleportVolume;
     private GameObject teleportTarget;
     private bool canTeleport = true;
@@ -42,22 +58,22 @@ public class EnderChestTeleporter : MonoBehaviour
 
         // Find all teleport chests in the scene
         GameObject[] enderChests = GameObject.FindGameObjectsWithTag(teleportTag);
-        Debug.Log(gameObject.name + " found " + enderChests.Length + " EnderChests in the scene.");
+        DebugLog(gameObject.name + " found " + enderChests.Length + " EnderChests in the scene.");
 
         // Log information about each found chest for debugging
         foreach (GameObject chest in enderChests)
         {
-            Debug.Log("Found EnderChest: " + chest.name + " at position " + chest.transform.position);
+            DebugLog("Found EnderChest: " + chest.name + " at position " + chest.transform.position);
 
             // Check if it has TeleportTarget
             Transform target = chest.transform.Find("TeleportTarget");
             if (target != null)
             {
-                Debug.Log("  - Has TeleportTarget at position " + target.position);
+                DebugLog("  - Has TeleportTarget at position " + target.position);
             }
             else
             {
-                Debug.LogWarning("  - Missing TeleportTarget! Add a child named 'TeleportTarget' to " + chest.name);
+                DebugLogWarning("  - Missing TeleportTarget! Add a child named 'TeleportTarget' to " + chest.name);
             }
         }
 
@@ -98,7 +114,7 @@ public class EnderChestTeleporter : MonoBehaviour
             {
                 // Timer expired, remove directly
                 chestLockoutTimers.Remove(chest);
-                Debug.Log($"Lockout expired for chest: {chest.name}");
+                DebugLog($"Lockout expired for chest: {chest.name}");
             }
             else
             {
@@ -108,10 +124,10 @@ public class EnderChestTeleporter : MonoBehaviour
         }
 
         // DEBUG: Add key press to reset the teleporter for testing
-        if (Input.GetKeyDown(KeyCode.R))
+        if (enableDebugKeyCommands && Input.GetKeyDown(resetKey))
         {
             ResetTeleporter();
-            Debug.Log("Teleporter reset triggered by 'R' key");
+            DebugLog($"Teleporter reset triggered by '{resetKey}' key");
         }
     }
 
@@ -130,12 +146,12 @@ public class EnderChestTeleporter : MonoBehaviour
 
                 if (chestAnimator == null)
                 {
-                    Debug.LogWarning("No Animator component found on " + gameObject.name +
+                    DebugLogWarning("No Animator component found on " + gameObject.name +
                                     " or its children. Chest animations will not play.");
                 }
                 else
                 {
-                    Debug.Log("Found Animator in child of " + gameObject.name);
+                    DebugLog("Found Animator in child of " + gameObject.name);
                 }
             }
         }
@@ -148,7 +164,7 @@ public class EnderChestTeleporter : MonoBehaviour
             if (detectTransform != null)
             {
                 PlayerDetectVolume = detectTransform.gameObject;
-                Debug.Log("Found PlayerDetectVolume: " + PlayerDetectVolume.name);
+                DebugLog("Found PlayerDetectVolume: " + PlayerDetectVolume.name);
 
                 // Make sure it has a collider set as trigger
                 Collider detectCollider = PlayerDetectVolume.GetComponent<Collider>();
@@ -158,7 +174,7 @@ public class EnderChestTeleporter : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("PlayerDetectVolume has no collider! Adding a BoxCollider");
+                    DebugLogWarning("PlayerDetectVolume has no collider! Adding a BoxCollider");
                     BoxCollider boxCollider = PlayerDetectVolume.AddComponent<BoxCollider>();
                     boxCollider.isTrigger = true;
                     boxCollider.size = new Vector3(3f, 2f, 3f); // Adjust size as needed
@@ -175,7 +191,7 @@ public class EnderChestTeleporter : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("No PlayerDetectVolume found as child! Player proximity detection won't work.");
+                DebugLogWarning("No PlayerDetectVolume found as child! Player proximity detection won't work.");
             }
         }
         else
@@ -198,13 +214,13 @@ public class EnderChestTeleporter : MonoBehaviour
         // If not found as direct child, try deeper search
         if (volumeTransform == null)
         {
-            Debug.Log("TeleportVolume not found as direct child, trying recursive search...");
+            DebugLog("TeleportVolume not found as direct child, trying recursive search...");
             foreach (Transform child in GetComponentsInChildren<Transform>())
             {
                 if (child.name.Contains("TeleportVolume"))
                 {
                     volumeTransform = child;
-                    Debug.Log("Found TeleportVolume through recursive search: " + child.name);
+                    DebugLog("Found TeleportVolume through recursive search: " + child.name);
                     break;
                 }
             }
@@ -213,12 +229,12 @@ public class EnderChestTeleporter : MonoBehaviour
         // If still not found, check if this GameObject itself has a collider
         if (volumeTransform == null)
         {
-            Debug.Log("No TeleportVolume child found, checking if this GameObject has a collider...");
+            DebugLog("No TeleportVolume child found, checking if this GameObject has a collider...");
             Collider ownCollider = GetComponent<Collider>();
             if (ownCollider != null)
             {
                 volumeTransform = transform;
-                Debug.Log("Using this GameObject as TeleportVolume since it has a collider");
+                DebugLog("Using this GameObject as TeleportVolume since it has a collider");
             }
         }
 
@@ -226,7 +242,7 @@ public class EnderChestTeleporter : MonoBehaviour
         if (volumeTransform != null)
         {
             teleportVolume = volumeTransform.gameObject;
-            Debug.Log("TeleportVolume set to: " + teleportVolume.name);
+            DebugLog("TeleportVolume set to: " + teleportVolume.name);
 
             // Check for collider component
             Collider volumeCollider = teleportVolume.GetComponent<Collider>();
@@ -234,7 +250,7 @@ public class EnderChestTeleporter : MonoBehaviour
             // If no collider exists, add a box collider as fallback
             if (volumeCollider == null)
             {
-                Debug.LogWarning("No collider found on TeleportVolume, adding a BoxCollider");
+                DebugLogWarning("No collider found on TeleportVolume, adding a BoxCollider");
                 volumeCollider = teleportVolume.AddComponent<BoxCollider>();
                 BoxCollider boxCollider = volumeCollider as BoxCollider;
                 boxCollider.size = new Vector3(1.5f, 1.5f, 1.5f);
@@ -244,7 +260,7 @@ public class EnderChestTeleporter : MonoBehaviour
             else
             {
                 volumeCollider.isTrigger = true;
-                Debug.Log("Found and configured existing collider on TeleportVolume");
+                DebugLog("Found and configured existing collider on TeleportVolume");
             }
 
             // Add collider component to this GameObject if we're not already using it
@@ -254,7 +270,7 @@ public class EnderChestTeleporter : MonoBehaviour
                 Rigidbody rb = teleportVolume.GetComponent<Rigidbody>();
                 if (rb == null)
                 {
-                    Debug.Log("Adding non-physics Rigidbody to TeleportVolume for trigger detection");
+                    DebugLog("Adding non-physics Rigidbody to TeleportVolume for trigger detection");
                     rb = teleportVolume.AddComponent<Rigidbody>();
                     rb.isKinematic = true;
                     rb.useGravity = false;
@@ -274,15 +290,24 @@ public class EnderChestTeleporter : MonoBehaviour
                     volumeTeleporter.openedParameterName = this.openedParameterName;
                     volumeTeleporter.chestReopenCooldown = this.chestReopenCooldown;
 
+                    // Copy debug settings
+                    volumeTeleporter.enableDebugLogs = this.enableDebugLogs;
+                    volumeTeleporter.enableGUIDebugging = this.enableGUIDebugging;
+                    volumeTeleporter.enableDebugKeyCommands = this.enableDebugKeyCommands;
+                    volumeTeleporter.logCooldownRemaining = this.logCooldownRemaining;
+                    volumeTeleporter.drawDebugGizmos = this.drawDebugGizmos;
+                    volumeTeleporter.cooldownLogInterval = this.cooldownLogInterval;
+                    volumeTeleporter.resetKey = this.resetKey;
+
                     // Disable this instance to prevent duplicate actions
-                    Debug.Log("Moved teleporter script to TeleportVolume object and disabled this instance");
+                    DebugLog("Moved teleporter script to TeleportVolume object and disabled this instance");
                     this.enabled = false;
                 }
             }
         }
         else
         {
-            Debug.LogError("No TeleportVolume found or created! Teleportation will not work.");
+            DebugLogError("No TeleportVolume found or created! Teleportation will not work.");
         }
     }
 
@@ -294,13 +319,13 @@ public class EnderChestTeleporter : MonoBehaviour
         // If not found as direct child, try deeper search
         if (targetTransform == null)
         {
-            Debug.Log("TeleportTarget not found as direct child, trying recursive search...");
+            DebugLog("TeleportTarget not found as direct child, trying recursive search...");
             foreach (Transform child in GetComponentsInChildren<Transform>())
             {
                 if (child.name.Contains("TeleportTarget"))
                 {
                     targetTransform = child;
-                    Debug.Log("Found TeleportTarget through recursive search: " + child.name);
+                    DebugLog("Found TeleportTarget through recursive search: " + child.name);
                     break;
                 }
             }
@@ -309,7 +334,7 @@ public class EnderChestTeleporter : MonoBehaviour
         // If still not found, create one
         if (targetTransform == null)
         {
-            Debug.LogWarning("TeleportTarget not found, creating one...");
+            DebugLogWarning("TeleportTarget not found, creating one...");
             GameObject targetObj = new GameObject("TeleportTarget");
             targetObj.transform.parent = transform;
             targetObj.transform.localPosition = new Vector3(0, 0, 2); // 2 units in front
@@ -318,7 +343,7 @@ public class EnderChestTeleporter : MonoBehaviour
         }
 
         teleportTarget = targetTransform.gameObject;
-        Debug.Log("TeleportTarget set to: " + teleportTarget.name + " at position " + teleportTarget.transform.position);
+        DebugLog("TeleportTarget set to: " + teleportTarget.name + " at position " + teleportTarget.transform.position);
     }
 
     // Animation control methods
@@ -327,23 +352,23 @@ public class EnderChestTeleporter : MonoBehaviour
         // Don't open if on cooldown, teleporting, or no animator
         if (isOnCooldown)
         {
-            Debug.Log("Cannot open chest - cooldown active");
+            DebugLog("Cannot open chest - cooldown active");
             return;
         }
 
         if (isTeleporting)
         {
-            Debug.Log("Cannot open chest - teleportation in progress");
+            DebugLog("Cannot open chest - teleportation in progress");
             return;
         }
 
         if (chestAnimator == null)
         {
-            Debug.LogWarning("Cannot open chest - no animator assigned!");
+            DebugLogWarning("Cannot open chest - no animator assigned!");
             return;
         }
 
-        Debug.Log("Setting chest to open state: " + openedParameterName);
+        DebugLog("Setting chest to open state: " + openedParameterName);
         chestAnimator.SetBool(openedParameterName, true);
     }
 
@@ -351,7 +376,7 @@ public class EnderChestTeleporter : MonoBehaviour
     {
         if (chestAnimator != null)
         {
-            Debug.Log("Setting chest to closed state: " + openedParameterName);
+            DebugLog("Setting chest to closed state: " + openedParameterName);
             chestAnimator.SetBool(openedParameterName, false);
 
             // Start cooldown when chest is closed
@@ -359,7 +384,7 @@ public class EnderChestTeleporter : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Cannot close chest - no animator assigned!");
+            DebugLogWarning("Cannot close chest - no animator assigned!");
         }
     }
 
@@ -377,34 +402,37 @@ public class EnderChestTeleporter : MonoBehaviour
 
     private IEnumerator ChestCooldownCoroutine()
     {
-        Debug.Log("Starting chest cooldown for " + chestReopenCooldown + " seconds");
+        DebugLog("Starting chest cooldown for " + chestReopenCooldown + " seconds");
         isOnCooldown = true;
 
         float startTime = Time.time;
         float elapsedTime = 0f;
+        float lastLogTime = 0f;
 
         while (elapsedTime < chestReopenCooldown)
         {
             elapsedTime = Time.time - startTime;
             float remainingTime = chestReopenCooldown - elapsedTime;
 
-            // Log every 0.5 seconds for debugging
-            if (Mathf.FloorToInt(remainingTime * 2) != Mathf.FloorToInt((remainingTime + Time.deltaTime) * 2))
+            // Log remaining time at specified intervals
+            if (logCooldownRemaining &&
+                (Time.time - lastLogTime >= cooldownLogInterval))
             {
-                Debug.Log("Cooldown remaining: " + remainingTime.ToString("F1") + " seconds");
+                DebugLog("Cooldown remaining: " + remainingTime.ToString("F1") + " seconds");
+                lastLogTime = Time.time;
             }
 
             yield return null;
         }
 
         isOnCooldown = false;
-        Debug.Log("Chest cooldown finished - chest can now be reopened");
+        DebugLog("Chest cooldown finished - chest can now be reopened");
 
         // If player is still in range, reopen the chest
         if (playerInDetectionRange && !isTeleporting)
         {
             OpenChest();
-            Debug.Log("Player still in range after cooldown - reopening chest");
+            DebugLog("Player still in range after cooldown - reopening chest");
         }
 
         cooldownCoroutine = null;
@@ -425,18 +453,18 @@ public class EnderChestTeleporter : MonoBehaviour
         teleportInitiated = false;
         canTeleport = true;
 
-        Debug.Log("Teleporter state has been reset");
+        DebugLog("Teleporter state has been reset");
 
         // Open chest if player is in range
         if (playerInDetectionRange && chestAnimator != null)
         {
             chestAnimator.SetBool(openedParameterName, true);
-            Debug.Log("Reopening chest after reset because player is in range");
+            DebugLog("Reopening chest after reset because player is in range");
         }
         else if (chestAnimator != null)
         {
             chestAnimator.SetBool(openedParameterName, false);
-            Debug.Log("Keeping chest closed after reset because player is not in range");
+            DebugLog("Keeping chest closed after reset because player is not in range");
         }
     }
 
@@ -449,15 +477,15 @@ public class EnderChestTeleporter : MonoBehaviour
         if (!isOnCooldown && !isTeleporting)
         {
             OpenChest();
-            Debug.Log("Player entered detection range - opening chest");
+            DebugLog("Player entered detection range - opening chest");
         }
         else if (isOnCooldown)
         {
-            Debug.Log("Player entered detection range but chest is on cooldown");
+            DebugLog("Player entered detection range but chest is on cooldown");
         }
         else
         {
-            Debug.Log("Player entered detection range but teleportation in progress - not opening chest");
+            DebugLog("Player entered detection range but teleportation in progress - not opening chest");
         }
     }
 
@@ -470,18 +498,18 @@ public class EnderChestTeleporter : MonoBehaviour
         if (!isTeleporting)
         {
             CloseChest();
-            Debug.Log("Player exited detection range - closing chest");
+            DebugLog("Player exited detection range - closing chest");
         }
         else
         {
-            Debug.Log("Player exited detection range but teleportation in progress - not closing chest");
+            DebugLog("Player exited detection range but teleportation in progress - not closing chest");
         }
     }
 
     // This will be called for ANY collider attached to the GameObject this script is on
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered by: " + other.name + " with tag: " + other.tag);
+        DebugLog("Trigger entered by: " + other.name + " with tag: " + other.tag);
 
         // Check if the entering object is the player
         if (other.CompareTag("Player"))
@@ -493,14 +521,14 @@ public class EnderChestTeleporter : MonoBehaviour
             if (chestLockoutTimers.ContainsKey(thisChest))
             {
                 float lockoutRemaining = chestLockoutTimers[thisChest];
-                Debug.Log("This chest is on lockout for " + lockoutRemaining.ToString("F1") + " more seconds");
+                DebugLog("This chest is on lockout for " + lockoutRemaining.ToString("F1") + " more seconds");
                 return;
             }
 
             // Check if we can teleport normally
             if (canTeleport && !teleportInitiated)
             {
-                Debug.Log("Player entered " + gameObject.name + " teleport volume. Initiating teleport sequence...");
+                DebugLog("Player entered " + gameObject.name + " teleport volume. Initiating teleport sequence...");
                 teleportInitiated = true;
                 StartCoroutine(TeleportPlayer());
             }
@@ -513,14 +541,14 @@ public class EnderChestTeleporter : MonoBehaviour
 
         canTeleport = false;
         isTeleporting = true; // Set teleporting flag
-        Debug.Log("Teleport sequence started - waiting " + teleportDelay + " seconds before teleporting...");
+        DebugLog("Teleport sequence started - waiting " + teleportDelay + " seconds before teleporting...");
 
         // Wait for teleport delay
         yield return new WaitForSeconds(teleportDelay);
 
         // Get the root GameObject of this chest (the EnderChest object)
         GameObject thisChest = GetRootEnderChest();
-        Debug.Log("Current chest identified as: " + thisChest.name);
+        DebugLog("Current chest identified as: " + thisChest.name);
 
         // Find all teleport chests in the scene
         GameObject[] allChests = GameObject.FindGameObjectsWithTag(teleportTag);
@@ -532,7 +560,7 @@ public class EnderChestTeleporter : MonoBehaviour
             // Skip if this is the current chest or part of the current chest
             if (IsPartOfChest(chest, thisChest))
             {
-                Debug.Log("Skipping this chest: " + chest.name);
+                DebugLog("Skipping this chest: " + chest.name);
                 continue;
             }
 
@@ -542,14 +570,14 @@ public class EnderChestTeleporter : MonoBehaviour
             if (targetPoint != null)
             {
                 validTargets.Add(chest);
-                Debug.Log("Added valid target chest: " + chest.name);
+                DebugLog("Added valid target chest: " + chest.name);
             }
         }
 
         // Handle case where no valid targets were found
         if (validTargets.Count == 0)
         {
-            Debug.LogError("No valid teleport targets found! Make sure other chests have the 'teleChest' tag and a 'TeleportTarget' child GameObject.");
+            DebugLogError("No valid teleport targets found! Make sure other chests have the 'teleChest' tag and a 'TeleportTarget' child GameObject.");
             teleportInitiated = false;
             canTeleport = true;
             isTeleporting = false; // Reset teleporting flag
@@ -561,14 +589,14 @@ public class EnderChestTeleporter : MonoBehaviour
         GameObject targetChest = validTargets[randomIndex];
         Transform destinationPoint = FindTargetInHierarchy(targetChest);
 
-        Debug.Log("Selected target chest: " + targetChest.name + " with target at " + destinationPoint.position);
+        DebugLog("Selected target chest: " + targetChest.name + " with target at " + destinationPoint.position);
 
         // Find Controller - this is the object we'll teleport
         GameObject controller = FindControllerToTeleport();
 
         if (controller == null)
         {
-            Debug.LogError("Could not find Controller to teleport!");
+            DebugLogError("Could not find Controller to teleport!");
             teleportInitiated = false;
             canTeleport = true;
             isTeleporting = false; // Reset teleporting flag
@@ -585,17 +613,17 @@ public class EnderChestTeleporter : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         // Directly teleport the controller
-        Debug.Log("TELEPORTING Controller from " + originalPosition + " to " + destinationPoint.position);
+        DebugLog("TELEPORTING Controller from " + originalPosition + " to " + destinationPoint.position);
         controller.transform.position = destinationPoint.position;
         controller.transform.rotation = destinationPoint.rotation;
 
         // Verify teleportation
-        Debug.Log("Controller teleported to " + controller.transform.position);
-        Debug.Log("Distance to target: " + Vector3.Distance(controller.transform.position, destinationPoint.position));
+        DebugLog("Controller teleported to " + controller.transform.position);
+        DebugLog("Distance to target: " + Vector3.Distance(controller.transform.position, destinationPoint.position));
 
         // Set the destination chest to be locked out for the specified duration
         chestLockoutTimers[targetChest] = destinationLockoutDuration;
-        Debug.Log("Locked out destination chest " + targetChest.name + " for " + destinationLockoutDuration + " seconds");
+        DebugLog("Locked out destination chest " + targetChest.name + " for " + destinationLockoutDuration + " seconds");
 
         // Wait for cooldown
         yield return new WaitForSeconds(postTeleportCooldown);
@@ -605,7 +633,7 @@ public class EnderChestTeleporter : MonoBehaviour
         canTeleport = true;
         isTeleporting = false;
 
-        Debug.Log("Local teleport cooldown finished. Ready for next teleport.");
+        DebugLog("Local teleport cooldown finished. Ready for next teleport.");
     }
 
     // Get the root EnderChest GameObject that this teleporter belongs to
@@ -705,7 +733,7 @@ public class EnderChestTeleporter : MonoBehaviour
                 if (controllerTransform != null)
                 {
                     controller = controllerTransform.gameObject;
-                    Debug.Log("Found Controller as child of Player: " + controller.name);
+                    DebugLog("Found Controller as child of Player: " + controller.name);
                 }
                 else
                 {
@@ -715,7 +743,7 @@ public class EnderChestTeleporter : MonoBehaviour
                         if (child.name.Contains("Controller"))
                         {
                             controller = child.gameObject;
-                            Debug.Log("Found Controller through recursive search: " + controller.name);
+                            DebugLog("Found Controller through recursive search: " + controller.name);
                             break;
                         }
                     }
@@ -726,9 +754,35 @@ public class EnderChestTeleporter : MonoBehaviour
         return controller;
     }
 
+    // Wrapper methods for Debug that check if debugging is enabled
+    private void DebugLog(string message)
+    {
+        if (enableDebugLogs)
+        {
+            Debug.Log($"[{gameObject.name}] {message}");
+        }
+    }
+
+    private void DebugLogWarning(string message)
+    {
+        if (enableDebugLogs)
+        {
+            Debug.LogWarning($"[{gameObject.name}] {message}");
+        }
+    }
+
+    private void DebugLogError(string message)
+    {
+        // Always log errors, even if debug logs are disabled
+        Debug.LogError($"[{gameObject.name}] {message}");
+    }
+
     // Visualize teleport volumes and targets in the editor
     void OnDrawGizmos()
     {
+        if (!drawDebugGizmos)
+            return;
+
         // Find the volume if not already set
         if (teleportVolume == null)
         {
@@ -823,6 +877,9 @@ public class EnderChestTeleporter : MonoBehaviour
     // Optional: UI visualization for debugging
     void OnGUI()
     {
+        if (!enableGUIDebugging)
+            return;
+
         GameObject thisChest = GetRootEnderChest();
         int yPosition = 10;
 
@@ -855,10 +912,9 @@ public class EnderChestTeleporter : MonoBehaviour
         GUI.Label(new Rect(10, yPosition, 300, 30), "Player: " + status);
     }
 }
+    // Helper class to detect player proximity for animation triggering
 
-// Helper class to detect player proximity for animation triggering
-
-public class PlayerProximityDetector : MonoBehaviour
+    public class PlayerProximityDetector : MonoBehaviour
 {
     private EnderChestTeleporter parentTeleporter;
 
