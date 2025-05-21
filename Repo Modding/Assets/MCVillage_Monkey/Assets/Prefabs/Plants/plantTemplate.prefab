@@ -1,0 +1,306 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2467997884433081637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 211360743860583845}
+  - component: {fileID: -473117668163357980}
+  m_Layer: 0
+  m_Name: plantTemplate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &211360743860583845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467997884433081637}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: 1.923, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-473117668163357980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467997884433081637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29f8b14bd1e1bae4e90bcdd45b757496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5678571621511441053, guid: b3f78a0609ce8724c96c9ef48d3f47c1, type: 3}
+  gridSizeX: 7
+  gridSizeY: 1
+  gridSizeZ: 7
+  spacing: 1
+  generateOnWake: 1
+  generateInEditor: 0
+  alignToCenter: 1
+  clearOnGenerate: 1
+  useRandomSeed: 1
+  seed: 7201
+  showGridBounds: 1
+  gridBoundsColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
+  gridLineThickness: 2
+  plantTypeConfigs:
+  - name: Single
+    prefab: {fileID: 5678571621511441053, guid: 3babb97b724bf444e8106dd58613c9cc, type: 3}
+    plantType: 1
+    spawnWeight: 0
+    enabled: 1
+  - name: Double
+    prefab: {fileID: 5678571621511441053, guid: f2169db637fded94a8a56cae307b8cf6, type: 3}
+    plantType: 2
+    spawnWeight: 0
+    enabled: 1
+  - name: Crop
+    prefab: {fileID: 5678571621511441053, guid: b3f78a0609ce8724c96c9ef48d3f47c1, type: 3}
+    plantType: 3
+    spawnWeight: 0
+    enabled: 1
+  defaultPlantType: 0
+  plantTypeProbability: 0.5
+  transformRandomizer:
+    randomizeScale: 0
+    minScale: {x: 0.8, y: 0.8, z: 0.8}
+    maxScale: {x: 1.2, y: 1.2, z: 1.2}
+    randomizeRotation: 0
+    minRotation: {x: 0, y: 0, z: 0}
+    maxRotation: {x: 0, y: 360, z: 0}
+  shaderManager:
+    shaderParameters:
+    - name: _Stage
+      randomize: 1
+      minValue: 0
+      maxValue: 1
+    - name: _WaveSpeed
+      randomize: 1
+      minValue: 0.5
+      maxValue: 2
+  spriteSheetManager:
+    mainTextureProperty: _MainTex
+    stageProperty: _Stage
+    columnsProperty: _Columns
+    rowsProperty: _Rows
+    stageCountProperty: _StageCount
+    colorProperty: _Color
+    spriteSheets:
+    - name: Beetroot
+      spriteSheet: {fileID: 2800000, guid: 5e5be86310c89d442afd98e3c2d8a7d1, type: 3}
+      gridSize: {x: 4, y: 1}
+      frameCount: 4
+      expanded: 0
+      prefabType: 3
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Carrot
+      spriteSheet: {fileID: 2800000, guid: cb76c79b0a91c6248a8012027dea9dd5, type: 3}
+      gridSize: {x: 4, y: 1}
+      frameCount: 4
+      expanded: 0
+      prefabType: 3
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Potato
+      spriteSheet: {fileID: 2800000, guid: 062d9f3fe5d35c9478c59568c13a585f, type: 3}
+      gridSize: {x: 4, y: 1}
+      frameCount: 4
+      expanded: 0
+      prefabType: 3
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Wheat
+      spriteSheet: {fileID: 2800000, guid: 7e08cfb7df704fa4ea58a5f91107f2e1, type: 3}
+      gridSize: {x: 7, y: 1}
+      frameCount: 7
+      expanded: 0
+      prefabType: 3
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Allium
+      spriteSheet: {fileID: 2800000, guid: 2e81d4e7f48fc9e43a00f28de54e83c8, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Azure
+      spriteSheet: {fileID: 2800000, guid: 239d629d34374b9418dbd22768399038, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Blue Orchid
+      spriteSheet: {fileID: 2800000, guid: 2b2c23c7ffa13614a897720b853d3bb4, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Cornflower
+      spriteSheet: {fileID: 2800000, guid: 08e62e99badde8f40a4f259e020fdda5, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Lily of the Valley
+      spriteSheet: {fileID: 2800000, guid: b2b4e45f6d0441d4d9b268b47f90a768, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Peony
+      spriteSheet: {fileID: 2800000, guid: 7144e93a007518d498b9cbb9675503dc, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Poppy
+      spriteSheet: {fileID: 2800000, guid: dd9c83f43a378e04a8e8e6c7d781c37e, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Orange Tulip
+      spriteSheet: {fileID: 2800000, guid: 9468f9f419acb2842a6b06512e54cacb, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Pink Tulip
+      spriteSheet: {fileID: 2800000, guid: 96082e0bb8115e441b0f1c71e12dddf8, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Red Tulip
+      spriteSheet: {fileID: 2800000, guid: 5812fc66ca487484490422d7992f7d72, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: White Tulip
+      spriteSheet: {fileID: 2800000, guid: b5d9d3396a60ee94cb845681e396af44, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Short Grass (Dry)
+      spriteSheet: {fileID: 2800000, guid: ca40fbe13072de047b2a37faf9463373, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Tall Grass (Dry)
+      spriteSheet: {fileID: 2800000, guid: 0a424ccaba7b0fc44be699ed9ec2bc3e, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Short Grass
+      spriteSheet: {fileID: 2800000, guid: 02e124b2218cfe34ea03f73295272218, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 1
+      useColorTint: 1
+      colorTint: {r: 0.49411768, g: 0.67058825, b: 0.30588236, a: 0}
+    - name: Tall Grass
+      spriteSheet: {fileID: 2800000, guid: cd6f6101b3fbf9c4895033d52c57b282, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 2
+      useColorTint: 1
+      colorTint: {r: 0.49411768, g: 0.67058825, b: 0.30588236, a: 0}
+    - name: Fern
+      spriteSheet: {fileID: 2800000, guid: 124f3e308fbece349a5ca4d4927d2e62, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 2
+      useColorTint: 1
+      colorTint: {r: 0.49411768, g: 0.67058825, b: 0.30588236, a: 0}
+    - name: Rose Bush
+      spriteSheet: {fileID: 2800000, guid: 0b16ba0ebae78044281329a2497cff74, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 2
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Sunflower
+      spriteSheet: {fileID: 2800000, guid: ee1a20b6fa8a0174a945921ef05a547e, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 2
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Tall Peony
+      spriteSheet: {fileID: 2800000, guid: 2cec5275a9ae82541810e23027dc4be7, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 2
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    - name: Lilac
+      spriteSheet: {fileID: 2800000, guid: 0f0f3ceac24bf884e802fa25f41e9c56, type: 3}
+      gridSize: {x: 1, y: 1}
+      frameCount: 1
+      expanded: 0
+      prefabType: 2
+      useColorTint: 0
+      colorTint: {r: 0, g: 0, b: 0, a: 0}
+    useSpriteSheets: 1
+    plantPrefabs:
+    - name: Single
+      prefab: {fileID: 5678571621511441053, guid: 3babb97b724bf444e8106dd58613c9cc, type: 3}
+      type: 1
+    - name: Double
+      prefab: {fileID: 5678571621511441053, guid: f2169db637fded94a8a56cae307b8cf6, type: 3}
+      type: 2
+    - name: Crop
+      prefab: {fileID: 5678571621511441053, guid: b3f78a0609ce8724c96c9ef48d3f47c1, type: 3}
+      type: 3
